@@ -11,12 +11,17 @@ class SideMenu extends StatelessWidget {
       color: Color.fromRGBO(50, 75, 205, 1),
       child: ListView(
         children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'Menu',
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
-          ),
+          Container(
+              height: 70.0,
+              child: DrawerHeader(
+                child: Text('Dashboard',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                    )),
+                margin: EdgeInsets.all(20.0),
+                padding: EdgeInsets.only(left: 10),
+              )),
           ListTile(
             leading: Icon(
               Icons.home,

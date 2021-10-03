@@ -1,6 +1,8 @@
 import 'package:vehicle/aboutuspage.dart';
+import 'package:vehicle/aboutuspageafter.dart';
 import 'package:vehicle/afterlogin.dart';
 import 'package:vehicle/contactuspage.dart';
+import 'package:vehicle/contactuspageafter.dart';
 import 'package:vehicle/main.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +49,8 @@ class loginsidemenu extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => aboutuspage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => aboutuspageafter()));
             },
           ),
           ListTile(
@@ -61,8 +63,8 @@ class loginsidemenu extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => contactuspage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => contactuspageafter()));
             },
           ),
           ListTile(
