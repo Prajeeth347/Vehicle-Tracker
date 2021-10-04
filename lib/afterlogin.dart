@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle/loginsidemenu.dart';
 import 'package:vehicle/main.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class afterlogin extends StatelessWidget {
+  static const _initialCameraPosition =
+      CameraPosition(target: LatLng(13.622556, 79.411155), zoom: 12);
   DateTime pre_backpress = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,9 @@ class afterlogin extends StatelessWidget {
             return true; // true will exit the app
           }
         },
-        child: Text('Map'),
+        child: GoogleMap(
+            zoomControlsEnabled: false,
+            initialCameraPosition: _initialCameraPosition),
       ),
       drawer: loginsidemenu(),
     );
