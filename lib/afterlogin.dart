@@ -119,7 +119,7 @@ class _afterloginState extends State<afterlogin> {
                       ),
                     ),
                   ),
-                  Align(
+                  /*Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
                         onPressed: () async {
@@ -127,7 +127,7 @@ class _afterloginState extends State<afterlogin> {
                               builder: (context) => afterlogin()));
                         },
                         child: Icon(Icons.refresh_rounded)),
-                  )
+                  )*/
                 ],
               ));
             } else {
