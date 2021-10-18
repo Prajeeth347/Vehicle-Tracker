@@ -58,6 +58,8 @@ class loginpage extends StatefulWidget {
 class _loginpageState extends State<loginpage> {
   DateTime pre_backpress = DateTime.now();
   bool _isObscure = true;
+  final usernamecontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,6 +113,7 @@ class _loginpageState extends State<loginpage> {
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     style: TextStyle(color: Colors.white),
+                    controller: usernamecontroller,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -126,6 +129,7 @@ class _loginpageState extends State<loginpage> {
                   child: TextField(
                     obscureText: _isObscure,
                     style: TextStyle(color: Colors.white),
+                    controller: passwordcontroller,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -145,6 +149,7 @@ class _loginpageState extends State<loginpage> {
                     ),
                   ),
                 ),
+                /*
                 Container(
                   child: TextButton(
                     onPressed: () {
@@ -159,7 +164,7 @@ class _loginpageState extends State<loginpage> {
                       style: TextStyle(color: Colors.blue),
                     ),
                   ),
-                ),
+                ),*/
                 Container(
                   height: 50,
                   width: 250,
@@ -168,8 +173,20 @@ class _loginpageState extends State<loginpage> {
                       borderRadius: BorderRadius.circular(20)),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => afterlogin()));
+                      if (usernamecontroller.text ==
+                              "group14esiiits@gmail.com" &&
+                          passwordcontroller.text == 'Group14') {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => afterlogin()));
+                      } else {
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Invalid Credentials'),
+                                  content: const Text(
+                                      'Please check the details and retry'),
+                                ));
+                      }
                     },
                     child: Text('Login',
                         style: TextStyle(

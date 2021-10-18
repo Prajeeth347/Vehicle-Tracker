@@ -30,11 +30,12 @@ class _afterloginState extends State<afterlogin> {
     var response = await http
         .get(Uri.https('gpstrack01.000webhostapp.com', 'gpsflutterdata.php'));
     var jsonData = jsonDecode(response.body);
-    List latestdata = [0.0, 0.0, 0];
+    ;
     for (var u in jsonData) {
       User user = User(u["lat"], u["lng"], u["Speed"]);
       gpsdata.add(user);
     }
+    List latestdata = [0.0, 0.0, 0];
     int n = gpsdata.length - 1;
     spd = int.parse(gpsdata[n].Speed);
     latitude = double.parse(gpsdata[n].lat);
@@ -118,10 +119,42 @@ class _afterloginState extends State<afterlogin> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => afterlogin()));
+                        },
+                        child: Icon(Icons.refresh_rounded)),
+                  )
                 ],
               ));
             } else {
-              return Center(child: CircularProgressIndicator());
+              return Stack(
+                children: [
+                  GoogleMap(
+                    zoomControlsEnabled: false,
+                    initialCameraPosition: afterlogin._initialCameraPosition,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      color: Colors.black,
+                      alignment: Alignment.bottomCenter,
+                      height: 30,
+                      width: 150,
+                      child: Text(
+                        'Speed : ',
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: CircularProgressIndicator(),
+                  )
+                ],
+              );
             }
           }),
       drawer: loginsidemenu(),
