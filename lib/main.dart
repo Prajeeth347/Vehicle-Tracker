@@ -174,10 +174,33 @@ class _loginpageState extends State<loginpage> {
                   child: TextButton(
                     onPressed: () {
                       if (usernamecontroller.text ==
-                              "group14esiiits@gmail.com" &&
+                              'group14esiiits@gmail.com' &&
                           passwordcontroller.text == 'Group14') {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => afterlogin()));
+                      } else if (usernamecontroller.text == '') {
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('No Username entered'),
+                                  content: const Text('Enter a valid Username'),
+                                ));
+                      } else if (passwordcontroller.text == '') {
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('No Password entered'),
+                                  content: const Text('Enter a valid Password'),
+                                ));
+                      } else if (usernamecontroller.text == '' ||
+                          passwordcontroller.text == '') {
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('No Details entered'),
+                                  content: const Text(
+                                      'Enter a valid Username/Password'),
+                                ));
                       } else {
                         showDialog<String>(
                             context: context,
