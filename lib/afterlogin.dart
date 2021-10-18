@@ -96,12 +96,12 @@ class _afterloginState extends State<afterlogin> {
                     snapshot.data.toString()[25];
               }
               allMarkers.add(Marker(
-                  markerId: MarkerId("Location"),
-                  position: LatLng(
-                    double.parse(lati),
-                    double.parse(longi),
-                  ),
-                  icon: BitmapDescriptor.hueViolet));
+                markerId: MarkerId("Location"),
+                position: LatLng(
+                  double.parse(lati),
+                  double.parse(longi),
+                ),
+              ));
               return Center(
                   child: Stack(
                 children: [
