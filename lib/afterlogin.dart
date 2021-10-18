@@ -97,7 +97,11 @@ class _afterloginState extends State<afterlogin> {
               }
               allMarkers.add(Marker(
                   markerId: MarkerId("Location"),
-                  position: LatLng(double.parse(lati), double.parse(longi))));
+                  position: LatLng(
+                    double.parse(lati),
+                    double.parse(longi),
+                  ),
+                  icon: BitmapDescriptor.hueViolet));
               return Center(
                   child: Stack(
                 children: [
@@ -119,15 +123,16 @@ class _afterloginState extends State<afterlogin> {
                       ),
                     ),
                   ),
-                  /*Align(
+                  Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
-                        onPressed: () async {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => afterlogin()));
+                        onPressed: () {
+                          setState(() {
+                            getgpsdata();
+                          });
                         },
                         child: Icon(Icons.refresh_rounded)),
-                  )*/
+                  )
                 ],
               ));
             } else {
