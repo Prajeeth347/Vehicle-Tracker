@@ -14,7 +14,7 @@ class User {
 
 class afterlogin extends StatefulWidget {
   static const _initialCameraPosition =
-      CameraPosition(target: LatLng(13.622556, 79.411155), zoom: 12);
+      CameraPosition(target: LatLng(13.622556, 79.411155), zoom: 15);
   @override
   State<afterlogin> createState() => _afterloginState();
 }
@@ -96,12 +96,14 @@ class _afterloginState extends State<afterlogin> {
                     snapshot.data.toString()[25];
               }
               allMarkers.add(Marker(
-                markerId: MarkerId("Location"),
-                position: LatLng(
-                  double.parse(lati),
-                  double.parse(longi),
-                ),
-              ));
+                  markerId: MarkerId("Location"),
+                  position: LatLng(
+                    double.parse(lati),
+                    double.parse(longi),
+                  ),
+                  infoWindow: InfoWindow(
+                      title: 'Vehicle location',
+                      snippet: 'Latest location received from device')));
               return Center(
                   child: Stack(
                 children: [
