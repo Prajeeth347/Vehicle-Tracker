@@ -84,15 +84,15 @@ class _afterloginState extends State<afterlogin> {
                   snapshot.data.toString()[18] +
                   snapshot.data.toString()[19] +
                   snapshot.data.toString()[20];
-              if (snapshot.data.toString()[23] == ']') {
-                sped = snapshot.data.toString()[22];
-              } else if (snapshot.data.toString()[24] == ']') {
+              if (snapshot.data.toString()[24] == ']') {
+                sped = snapshot.data.toString()[23];
+              } else if (snapshot.data.toString()[25] == ']') {
                 sped =
-                    snapshot.data.toString()[22] + snapshot.data.toString()[23];
+                    snapshot.data.toString()[23] + snapshot.data.toString()[24];
               } else {
-                sped = snapshot.data.toString()[22] +
-                    snapshot.data.toString()[23] +
-                    snapshot.data.toString()[24];
+                sped = snapshot.data.toString()[23] +
+                    snapshot.data.toString()[24] +
+                    snapshot.data.toString()[25];
               }
               allMarkers.add(Marker(
                   markerId: MarkerId("Location"),
@@ -117,7 +117,7 @@ class _afterloginState extends State<afterlogin> {
                         style: TextStyle(color: Colors.white, fontSize: 24),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ));
             } else {
