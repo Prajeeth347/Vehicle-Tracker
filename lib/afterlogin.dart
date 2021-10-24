@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:vehicle/loginsidemenu.dart';
@@ -19,7 +20,6 @@ class afterlogin extends StatefulWidget {
 class _afterloginState extends State<afterlogin> {
   DateTime pre_backpress = DateTime.now();
   List<Marker> allMarkers = [];
-  List<User> gpsdata = [];
   static var spd;
   static var latitude;
   static var longitude;
@@ -27,7 +27,7 @@ class _afterloginState extends State<afterlogin> {
     var response = await http.get(Uri.https(
         'vehicletracking001.000webhostapp.com', 'gpsflutterdata.php'));
     var jsonData = jsonDecode(response.body);
-    ;
+    List<User> gpsdata = [];
     for (var u in jsonData) {
       User user = User(u["lat"], u["lng"], u["speed"]);
       gpsdata.add(user);

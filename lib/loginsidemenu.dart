@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicle/aboutuspageafter.dart';
 import 'package:vehicle/afterlogin.dart';
 import 'package:vehicle/contactuspageafter.dart';
@@ -74,9 +75,14 @@ class loginsidemenu extends StatelessWidget {
               'Logout',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => loginpage()));
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove('username');
+              prefs.remove('password');
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => loginpage()));
             },
           ),
         ],

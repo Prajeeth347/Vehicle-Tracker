@@ -1,19 +1,32 @@
+import 'dart:math';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicle/afterlogin.dart';
 import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicle/vehiclehistory.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var username = prefs.getString('username');
+  print(username);
   debugDefaultTargetPlatformOverride = TargetPlatform.android;
-  runApp(
-    MyApp(),
-  );
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: username == null ? MyApp() : afterlogin()));
 }
 
 class MyApp extends StatelessWidget {
+  getSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var username = prefs.getString('username');
+    return username;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -180,10 +193,16 @@ class _loginpageState extends State<loginpage> {
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(20)),
                       child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (usernamecontroller.text ==
                                   'group14esiiits@gmail.com' &&
                               passwordcontroller.text == 'Group14') {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString(
+                                'username', usernamecontroller.text);
+                            prefs.setString(
+                                'password', usernamecontroller.text);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => afterlogin()));
                           } else if (usernamecontroller.text == '') {
