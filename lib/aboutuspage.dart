@@ -1,4 +1,3 @@
-import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
 
 class aboutuspage extends StatelessWidget {
@@ -7,7 +6,7 @@ class aboutuspage extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.black54,
-      drawer: SideMenu(),
+      //drawer: SideMenu(),
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         title: Text(

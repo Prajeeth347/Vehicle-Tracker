@@ -1,9 +1,7 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
 
 class contactuspage extends StatelessWidget {
-  @override
   void mailLaunch(command) async {
     if (await canLaunch(command)) {
       await launch(command);
@@ -12,11 +10,12 @@ class contactuspage extends StatelessWidget {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.black54,
-      drawer: SideMenu(),
+      //drawer: SideMenu(),
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         title: Text(

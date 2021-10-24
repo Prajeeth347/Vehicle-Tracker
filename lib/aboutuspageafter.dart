@@ -1,5 +1,3 @@
-import 'package:vehicle/loginsidemenu.dart';
-import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
 
 class aboutuspageafter extends StatelessWidget {
@@ -8,7 +6,7 @@ class aboutuspageafter extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.black54,
-      drawer: loginsidemenu(),
+      //drawer: loginsidemenu(),
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         title: Text(

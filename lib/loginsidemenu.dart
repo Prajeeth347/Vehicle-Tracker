@@ -1,7 +1,5 @@
-import 'package:vehicle/aboutuspage.dart';
 import 'package:vehicle/aboutuspageafter.dart';
 import 'package:vehicle/afterlogin.dart';
-import 'package:vehicle/contactuspage.dart';
 import 'package:vehicle/contactuspageafter.dart';
 import 'package:vehicle/main.dart';
 import 'package:flutter/material.dart';

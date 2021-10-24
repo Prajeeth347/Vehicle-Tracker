@@ -1,6 +1,4 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vehicle/loginsidemenu.dart';
-import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
 
 class contactuspageafter extends StatelessWidget {
@@ -17,7 +15,7 @@ class contactuspageafter extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.black54,
-      drawer: loginsidemenu(),
+      //drawer: loginsidemenu(),
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
         title: Text(

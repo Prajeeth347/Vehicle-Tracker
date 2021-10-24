@@ -1,12 +1,7 @@
 import 'dart:ffi';
-import 'dart:ui';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:vehicle/loginsidemenu.dart';
-import 'package:vehicle/main.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 Future<Album> fetchAlbum() async {
   final response =
