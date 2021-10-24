@@ -1,8 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicle/afterlogin.dart';
 import 'package:vehicle/sidemenu.dart';
 import 'package:flutter/material.dart';
+import 'package:vehicle/vehiclehistory.dart';
 
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.android;
