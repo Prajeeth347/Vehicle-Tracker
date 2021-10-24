@@ -1,9 +1,48 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:vehicle/loginsidemenu.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+class afterloginapp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AnimatedSplashScreen(
+            splash: Container(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.location_on_outlined,
+                  color: Colors.white,
+                  size: 35,
+                ),
+                Text(
+                  'Vehicle Tracker',
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 29,
+                  ),
+                ),
+              ],
+            )),
+            duration: 3000,
+            splashTransition: SplashTransition.fadeTransition,
+            backgroundColor: Colors.grey.shade900,
+            nextScreen: afterlogin()),
+      ),
+    );
+  }
+}
 
 class User {
   final String lat, lng, speed;

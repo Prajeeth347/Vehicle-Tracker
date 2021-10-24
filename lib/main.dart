@@ -15,18 +15,10 @@ Future<void> main() async {
   var username = prefs.getString('username');
   print(username);
   debugDefaultTargetPlatformOverride = TargetPlatform.android;
-  runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: username == null ? MyApp() : afterlogin()));
+  runApp(MaterialApp(home: username == null ? MyApp() : afterloginapp()));
 }
 
 class MyApp extends StatelessWidget {
-  getSharedPreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var username = prefs.getString('username');
-    return username;
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
