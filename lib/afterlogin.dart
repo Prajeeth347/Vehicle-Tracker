@@ -63,8 +63,8 @@ class _afterloginState extends State<afterlogin> {
   static var latitude;
   static var longitude;
   getgpsdata() async {
-    var response = await http.get(Uri.https(
-        'vehicletracking001.000webhostapp.com', 'gpsflutterdata.php'));
+    var response = await http
+        .get(Uri.https('gpstrack01.000webhostapp.com', 'gpsflutterdata.php'));
     var jsonData = jsonDecode(response.body);
     List<User> gpsdata = [];
     for (var u in jsonData) {
@@ -196,14 +196,30 @@ class _afterloginState extends State<afterlogin> {
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              getgpsdata();
-                            });
-                          },
-                          child: Icon(Icons.refresh_rounded)),
-                    )
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                getgpsdata();
+                              });
+                            },
+                            child: Icon(Icons.refresh_rounded)),
+                      ),
+                    ),
+                    Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 48, right: 8),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Icon(Icons.my_location_rounded,
+                                color: Colors.blue),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                            ),
+                          ),
+                        ))
                   ],
                 ));
               } else {
