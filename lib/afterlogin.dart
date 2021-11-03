@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:vehicle/loginsidemenu.dart';
@@ -102,13 +104,15 @@ class _afterloginState extends State<afterlogin> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.gps_fixed), label: 'Live Location'),
+              icon: Icon(FontAwesomeIcons.locationArrow),
+              label: 'Live Location'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.location_history_outlined),
-              label: 'Location History'),
+              icon: Icon(FontAwesomeIcons.history), label: 'Location History'),
         ],
         currentIndex: selectedIndex,
         selectedItemColor: Colors.blue,
+        backgroundColor: Colors.grey.shade900,
+        unselectedItemColor: Colors.white24,
         onTap: _onItemtapped,
       ),
       body: selectindex(context),
@@ -126,7 +130,7 @@ class _afterloginState extends State<afterlogin> {
     if (selectedIndex == 0) {
       return Livelocation(context);
     } else {
-      return Text('Location History');
+      return googleuserinfo();
     }
   }
 
@@ -220,20 +224,20 @@ class _afterloginState extends State<afterlogin> {
                           },
                           child: Icon(Icons.refresh_rounded)),
                     ),
-                  ),
+                  ), /*
                   Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 48, right: 8),
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: Icon(Icons.my_location_rounded,
+                          child: Icon(FontAwesomeIcons.locationArrow,
                               color: Colors.blue),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.white,
                           ),
                         ),
-                      ))
+                      ))*/
                 ],
               ));
             } else {
@@ -267,5 +271,48 @@ class _afterloginState extends State<afterlogin> {
             }
           }),
     );
+  }
+}
+
+class googleuserinfo extends StatefulWidget {
+  @override
+  _UserinfoState createState() => _UserinfoState();
+}
+
+class _UserinfoState extends State<googleuserinfo> {
+  final Stream<QuerySnapshot> _collegesstream =
+      FirebaseFirestore.instance.collection('vehicle_history').snapshots();
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: _collegesstream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              return ListTile(
+                leading: Icon(
+                  Icons.book_outlined,
+                  color: Colors.white,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right_outlined,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  data['created_date'],
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
+            }).toList(),
+          );
+        });
   }
 }
